@@ -1,3 +1,6 @@
+/* ==============================
+   VARIÁVEIS E TEMAS
+============================== */
 :root {
   --cor-primaria: #004080;
   --cor-secundaria: #f9f9f9;
@@ -21,15 +24,27 @@
   --fonte-xxl: 32px;
 }
 
+/* ==============================
+   RESET BÁSICO E CORPO
+============================== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--cor-secundaria);
   color: var(--cor-texto);
+  line-height: 1.6;
 }
 
-header, footer {
+/* ==============================
+   CABEÇALHO E NAVEGAÇÃO
+============================== */
+header,
+footer {
   background-color: var(--cor-primaria);
   color: var(--cor-texto-claro);
   padding: var(--esp-16);
@@ -39,48 +54,57 @@ header, footer {
 nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: var(--esp-8) 0 0 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--esp-16);
 }
 
-nav ul li {
-  position: relative;
-}
-
 nav ul li a {
   color: var(--cor-texto-claro);
   text-decoration: none;
-  padding: var(--esp-8);
-  display: block;
+  padding: var(--esp-8) var(--esp-16);
+  border-radius: 4px;
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: var(--cor-secundaria2);
+  outline: 2px solid var(--cor-secundaria2);
+  text-decoration: none;
 }
 
-nav ul li ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--cor-primaria);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  min-width: 150px;
+/* ==============================
+   BOTÕES DE ACESSIBILIDADE
+============================== */
+.accessibility-tools {
+  margin-top: var(--esp-8);
+  display: flex;
+  justify-content: center;
+  gap: var(--esp-8);
 }
 
-nav ul li:hover ul {
-  display: block;
+.accessibility-tools button {
+  font-size: var(--fonte-sm);
+  background-color: var(--cor-texto-claro);
+  color: var(--cor-primaria);
+  border: 2px solid var(--cor-primaria);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: var(--esp-8) var(--esp-16);
 }
 
-nav ul li ul li a {
-  padding: var(--esp-8);
+.accessibility-tools button:hover,
+.accessibility-tools button:focus {
+  background-color: var(--cor-secundaria2);
+  color: var(--cor-texto-claro);
+  outline: 2px solid var(--cor-secundaria2);
 }
 
+/* ==============================
+   CONTEÚDO PRINCIPAL
+============================== */
 main {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -98,6 +122,7 @@ section {
   padding: var(--esp-16);
   background-color: #fff;
   margin-bottom: var(--esp-16);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 img {
@@ -107,6 +132,43 @@ img {
   border-radius: 8px;
 }
 
+/* ==============================
+   FORMULÁRIOS
+============================== */
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: var(--esp-16);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: var(--esp-8);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: var(--esp-8);
+  margin-bottom: var(--esp-16);
+  border: 1px solid var(--cor-neutra1);
+  border-radius: 4px;
+  font-size: var(--fonte-md);
+}
+
+input:focus,
+textarea:focus {
+  outline: 3px solid var(--cor-secundaria2);
+  border-color: var(--cor-secundaria2);
+}
+
+/* ==============================
+   BOTÕES GERAIS
+============================== */
 button {
   padding: var(--esp-8) var(--esp-16);
   background-color: var(--cor-primaria);
@@ -114,80 +176,93 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: var(--cor-acento);
-}
-
+button:hover,
 button:focus {
+  background-color: var(--cor-acento);
   outline: 2px solid var(--cor-secundaria2);
 }
 
-button:active {
-  background-color: var(--cor-neutra2);
-}
-
-button:disabled {
-  background-color: var(--cor-neutra1);
-  cursor: not-allowed;
-}
-
-form {
-  max-width: 600px;
-  margin: auto;
-  padding: var(--esp-16);
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.alert {
-  padding: var(--esp-16);
-  background-color: var(--cor-acento);
-  color: var(--cor-texto-claro);
-  border-radius: 4px;
-  margin-bottom: var(--esp-16);
-}
-
-.toast {
-  padding: var(--esp-8);
-  background-color: var(--cor-secundaria2);
-  color: var(--cor-texto-claro);
-  border-radius: 4px;
-  position: fixed;
-  bottom: var(--esp-16);
-  right: var(--esp-16);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: var(--esp-24);
-  border-radius: 8px;
-}
-
+/* ==============================
+   ELEMENTOS DIVERSOS
+============================== */
 .badge {
   display: inline-block;
-  padding: var(--esp-4) var(--esp-8);
+  padding: 4px 8px;
   background-color: var(--cor-secundaria2);
   color: var(--cor-texto-claro);
   border-radius: 4px;
   font-size: var(--fonte-sm);
-  margin-right: var(--esp-8);
 }
 
+footer a.skip-link {
+  display: inline-block;
+  margin-top: var(--esp-8);
+  color: var(--cor-texto-claro);
+  text-decoration: underline;
+}
+
+/* ==============================
+   MODO ESCURO
+============================== */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #000;
+}
+
+body.dark-mode nav ul li a {
+  color: #f5f5f5;
+}
+
+body.dark-mode .card,
+body.dark-mode form {
+  background-color: #2b2b2b;
+  color: #f5f5f5;
+}
+
+body.dark-mode button {
+  background-color: #004080;
+  color: #fff;
+}
+
+/* ==============================
+   ALTO CONTRASTE
+============================== */
+body.high-contrast {
+  background-color: #000;
+  color: #fff;
+}
+
+body.high-contrast header,
+body.high-contrast footer {
+  background-color: #000;
+  color: #fff;
+}
+
+body.high-contrast a,
+body.high-contrast button {
+  background-color: #ff0;
+  color: #000;
+  border: 2px solid #fff;
+}
+
+body.high-contrast input,
+body.high-contrast textarea {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #ff0;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
 @media (max-width: 1200px) {
   main {
     grid-template-columns: repeat(8, 1fr);
