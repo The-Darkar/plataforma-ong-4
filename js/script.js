@@ -1,61 +1,62 @@
 document.addEventListener("DOMContentLoaded", () => {
   const botaoTema = document.getElementById("toggle-tema");
 
-  // Sempre começa no modo padrão
-  document.body.classList.remove("dark-mode", "alto-contraste");
-  localStorage.setItem("tema", "padrao");
-
+  // mantém o estado atual no body via data-attribute (somente durante a sessão)
   function aplicarTema(tema) {
     document.body.classList.remove("dark-mode", "alto-contraste");
+    document.body.removeAttribute("data-modo");
 
     if (tema === "escuro") {
       document.body.classList.add("dark-mode");
-      botaoTema.textContent = "Alto Contraste";
+      document.body.setAttribute("data-modo", "escuro");
+      if (botaoTema) botaoTema.textContent = "Alto Contraste";
     } else if (tema === "alto") {
       document.body.classList.add("alto-contraste");
-      botaoTema.textContent = "Padrão";
+      document.body.setAttribute("data-modo", "alto");
+      if (botaoTema) botaoTema.textContent = "Padrão";
     } else {
-      botaoTema.textContent = "Modo Escuro";
+      // padrão
+      if (botaoTema) botaoTema.textContent = "Modo Escuro";
+      document.body.setAttribute("data-modo", "padrao");
     }
   }
 
   function alternarTema() {
-    const temaAtual = localStorage.getItem("tema") || "padrao";
-    let novoTema;
-
-    if (temaAtual === "padrao") novoTema = "escuro";
-    else if (temaAtual === "escuro") novoTema = "alto";
-    else novoTema = "padrao";
-
-    localStorage.setItem("tema", novoTema);
-    aplicarTema(novoTema);
+    const atual = document.body.getAttribute("data-modo") || "padrao";
+    const proximo = atual === "padrao" ? "escuro" : (atual === "escuro" ? "alto" : "padrao");
+    aplicarTema(proximo);
   }
 
-  if (botaoTema) {
-    botaoTema.addEventListener("click", alternarTema);
-  }
-
+  // inicia SEM aplicar tema salvo: sempre padrão
   aplicarTema("padrao");
 
-  /* -------------------------------
-     Validação simples de formulário
-  --------------------------------*/
+  if (botaoTema) {
+    // remove listeners antigos (se houver) e reaplica um único listener seguro
+    botaoTema.replaceWith(botaoTema.cloneNode(true));
+    const novoBtn = document.getElementById("toggle-tema");
+    if (novoBtn) novoBtn.addEventListener("click", alternarTema);
+  }
+
+  /* Validação simples de formulários (preservando seu comportamento) */
   const forms = document.querySelectorAll("form");
   forms.forEach(form => {
-    form.addEventListener("submit", e => {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const inputs = form.querySelectorAll("input[required], textarea[required]");
+      const inputs = form.querySelectorAll("input[required], textarea[required], select[required]");
       let valido = true;
       inputs.forEach(input => {
-        if (!input.value.trim()) {
+        if (!input.value || !input.value.trim()) {
           valido = false;
           input.style.border = "2px solid red";
+          input.setAttribute("aria-invalid", "true");
         } else {
           input.style.border = "1px solid #ccc";
+          input.setAttribute("aria-invalid", "false");
         }
       });
+
       if (valido) {
-        alert("Cadastro enviado com sucesso!");
+        alert("Cadastro/Contato enviado com sucesso!");
         form.reset();
       } else {
         alert("Por favor, preencha todos os campos obrigatórios.");
@@ -63,20 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* -------------------------------
-     Máscara de telefone
-  --------------------------------*/
+  /* Máscara de telefone (se existir campo telefone) */
   const telefone = document.getElementById("telefone");
   if (telefone) {
     telefone.addEventListener("input", () => {
       telefone.value = telefone.value
         .replace(/\D/g, "")
-        .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+        .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")
+        .substring(0, 15);
     });
   }
 
-  /* -------------------------------
-     Lazy loading para imagens
-  --------------------------------*/
-  document.querySelectorAll("img").forEach(img => img.setAttribute("loading", "lazy"));
+  /* Lazy loading em todas as imagens */
+  document.querySelectorAll("img").forEach(img => {
+    if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
+  });
 });
