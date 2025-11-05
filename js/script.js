@@ -2,34 +2,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("content");
   const links = document.querySelectorAll("nav a");
 
-  // Função para carregar páginas internas sem recarregar o site (SPA)
   async function loadPage(url) {
     try {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Página não encontrada");
-      const html = await response.text();
+      let html = await response.text();
 
-      // Cria um container temporário pra manipular o HTML recebido
       const temp = document.createElement("div");
       temp.innerHTML = html;
-
-      // Remove header e footer da página carregada (mantemos os da index)
-      temp.querySelectorAll("header, footer").forEach(el => el.remove());
-
-      // Seleciona o conteúdo principal
+      temp.querySelectorAll("header, footer, script").forEach(el => el.remove());
       const main = temp.querySelector("main, #content") || temp;
-
-      // Atualiza o conteúdo na página atual
       content.innerHTML = main.innerHTML;
 
-      // Reaplica as máscaras e validações após trocar o conteúdo
       initMasks();
+      applySavedTheme(); // reaplica tema em conteúdo novo
     } catch (error) {
       content.innerHTML = `<p>Erro ao carregar a página: ${error.message}</p>`;
     }
   }
 
-  // Evento nos links do menu
   links.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -39,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Suporte ao botão "voltar" do navegador
   window.addEventListener("popstate", (event) => {
     if (event.state && event.state.page) {
       loadPage(event.state.page);
@@ -48,7 +38,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Função que aplica máscaras e validação nos formulários
   function initMasks() {
     const cpf = document.getElementById("cpf");
     const telefone = document.getElementById("telefone");
+    const cep = document.getElementById("cep");
+
+    if (cpf) {
+      cpf.addEventListener("input", () => {
+        cpf.value = cpf.value.replace(/\D/g, "")
+          .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      });
+    }
+
+    if (telefone) {
+      telefone.addEventListener("input", () => {
+        telefone.value = telefone.value.replace(/\D/g, "")
+          .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+      });
+    }
+
+    if (cep) {
+      cep.addEventListener("input", () => {
+        cep.value = cep.value.replace(/\D/g, "")
+          .replace(/(\d{5})(\d{3})/, "$1-$2");
+      });
+    }
+
+    const form = document.querySelector("form");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          alert("Por favor, preencha todos os campos corretamente!");
+        }
+      });
+    }
+  }
+
+  // reaplica tema ativo
+  function applySavedTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    document.body.classList.remove("dark-mode", "high-contrast");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+    } else if (savedTheme === "contrast") {
+      document.body.classList.add("high-contrast");
+    }
+  }
+
+  loadPage("index.html");
+  applySavedTheme();
+});
