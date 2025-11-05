@@ -74,5 +74,3 @@ O projeto segue a metodologia **GitFlow**:
 | `feature/*` | Implementação de novas funcionalidades. |
 | `release/*` | Preparação de novas versões. |
 | `hotfix/*` | Correções emergenciais em produção. |
-
-
