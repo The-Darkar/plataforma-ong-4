@@ -1,34 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
   const botaoTema = document.getElementById("toggle-tema");
 
-  function aplicarTema() {
-    const tema = localStorage.getItem("tema") || "claro";
+  // Sempre começa no modo padrão
+  document.body.classList.remove("dark-mode", "alto-contraste");
+  localStorage.setItem("tema", "padrao");
+
+  function aplicarTema(tema) {
     document.body.classList.remove("dark-mode", "alto-contraste");
 
     if (tema === "escuro") {
       document.body.classList.add("dark-mode");
-      if (botaoTema) botaoTema.textContent = "Alto Contraste";
+      botaoTema.textContent = "Alto Contraste";
     } else if (tema === "alto") {
       document.body.classList.add("alto-contraste");
-      if (botaoTema) botaoTema.textContent = "Modo Claro";
+      botaoTema.textContent = "Padrão";
     } else {
-      if (botaoTema) botaoTema.textContent = "Modo Escuro";
+      botaoTema.textContent = "Modo Escuro";
     }
   }
 
   function alternarTema() {
-    const temaAtual = localStorage.getItem("tema") || "claro";
+    const temaAtual = localStorage.getItem("tema") || "padrao";
     let novoTema;
-    if (temaAtual === "claro") novoTema = "escuro";
+
+    if (temaAtual === "padrao") novoTema = "escuro";
     else if (temaAtual === "escuro") novoTema = "alto";
-    else novoTema = "claro";
+    else novoTema = "padrao";
+
     localStorage.setItem("tema", novoTema);
-    aplicarTema();
+    aplicarTema(novoTema);
   }
 
-  if (botaoTema) botaoTema.addEventListener("click", alternarTema);
-  aplicarTema();
+  if (botaoTema) {
+    botaoTema.addEventListener("click", alternarTema);
+  }
 
+  aplicarTema("padrao");
+
+  /* -------------------------------
+     Validação simples de formulário
+  --------------------------------*/
   const forms = document.querySelectorAll("form");
   forms.forEach(form => {
     form.addEventListener("submit", e => {
@@ -52,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* -------------------------------
+     Máscara de telefone
+  --------------------------------*/
   const telefone = document.getElementById("telefone");
   if (telefone) {
     telefone.addEventListener("input", () => {
@@ -61,5 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* -------------------------------
+     Lazy loading para imagens
+  --------------------------------*/
   document.querySelectorAll("img").forEach(img => img.setAttribute("loading", "lazy"));
 });
