@@ -1,49 +1,58 @@
-// js/theme-toggle.js
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleDark = document.getElementById("toggle-dark");
-  const toggleContrast = document.getElementById("toggle-contrast");
+  const body = document.body;
 
-  // Salva tema no localStorage para manter a preferência do usuário
+  // Cria os botões se não existirem
+  let controls = document.querySelector(".theme-controls");
+  if (!controls) {
+    controls = document.createElement("div");
+    controls.className = "theme-controls";
+    controls.innerHTML = `
+      <button id="btn-dark-mode" aria-pressed="false">🌙 Modo Escuro</button>
+      <button id="btn-high-contrast" aria-pressed="false">🔳 Alto Contraste</button>
+    `;
+    document.body.prepend(controls);
+  }
+
+  const btnDark = document.getElementById("btn-dark-mode");
+  const btnContrast = document.getElementById("btn-high-contrast");
+
+  // Recupera estado salvo
   const savedTheme = localStorage.getItem("theme");
-  const savedContrast = localStorage.getItem("contrast");
-
   if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-    toggleDark.setAttribute("aria-pressed", "true");
+    body.classList.add("dark-mode");
+    btnDark.setAttribute("aria-pressed", "true");
+  } else if (savedTheme === "contrast") {
+    body.classList.add("high-contrast");
+    btnContrast.setAttribute("aria-pressed", "true");
   }
 
-  if (savedContrast === "high") {
-    document.body.classList.add("high-contrast");
-    toggleContrast.setAttribute("aria-pressed", "true");
+  // Função de ativar/desativar tema
+  function toggleTheme(mode) {
+    if (mode === "dark") {
+      const isActive = body.classList.toggle("dark-mode");
+      if (isActive) {
+        body.classList.remove("high-contrast");
+        btnContrast.setAttribute("aria-pressed", "false");
+        btnDark.setAttribute("aria-pressed", "true");
+        localStorage.setItem("theme", "dark");
+      } else {
+        btnDark.setAttribute("aria-pressed", "false");
+        localStorage.removeItem("theme");
+      }
+    } else if (mode === "contrast") {
+      const isActive = body.classList.toggle("high-contrast");
+      if (isActive) {
+        body.classList.remove("dark-mode");
+        btnDark.setAttribute("aria-pressed", "false");
+        btnContrast.setAttribute("aria-pressed", "true");
+        localStorage.setItem("theme", "contrast");
+      } else {
+        btnContrast.setAttribute("aria-pressed", "false");
+        localStorage.removeItem("theme");
+      }
+    }
   }
 
-  // Alternar modo escuro
-  toggleDark.addEventListener("click", () => {
-    const isDark = document.body.classList.toggle("dark-mode");
-    toggleDark.setAttribute("aria-pressed", isDark);
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-
-  // Alternar alto contraste
-  toggleContrast.addEventListener("click", () => {
-    const isHigh = document.body.classList.toggle("high-contrast");
-    toggleContrast.setAttribute("aria-pressed", isHigh);
-    localStorage.setItem("contrast", isHigh ? "high" : "normal");
-  });
-
-  // Foco visível ao navegar por teclado
-  let isUsingKeyboard = false;
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Tab") {
-      isUsingKeyboard = true;
-      document.body.classList.add("using-keyboard");
-    }
-  });
-
-  window.addEventListener("mousedown", () => {
-    if (isUsingKeyboard) {
-      isUsingKeyboard = false;
-      document.body.classList.remove("using-keyboard");
-    }
-  });
+  btnDark.addEventListener("click", () => toggleTheme("dark"));
+  btnContrast.addEventListener("click", () => toggleTheme("contrast"));
 });
