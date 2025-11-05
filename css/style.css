@@ -1,18 +1,24 @@
 :root {
-  --cor-primaria: #004080;
+  /* Paleta padrão (modo claro) */
+  --cor-primaria: #004080; /* azul escuro - contraste alto */
   --cor-secundaria: #f9f9f9;
-  --cor-acento: #e60000;
+  --cor-acento: #e60000; /* vermelho para ações */
   --cor-texto: #222;
   --cor-texto-claro: #fff;
   --cor-neutra1: #cccccc;
   --cor-neutra2: #666666;
-  --cor-secundaria2: #0080ff;
+  --cor-secundaria2: #0080ff; /* azul vibrante */
+  
+  /* Espaçamentos */
+  --esp-4: 4px;
   --esp-8: 8px;
   --esp-16: 16px;
   --esp-24: 24px;
   --esp-32: 32px;
   --esp-48: 48px;
   --esp-64: 64px;
+
+  /* Tipografia */
   --fonte-xs: 12px;
   --fonte-sm: 14px;
   --fonte-md: 16px;
@@ -21,14 +27,35 @@
   --fonte-xxl: 32px;
 }
 
+/* =========================================================
+   Configurações gerais
+   ========================================================= */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--cor-secundaria);
   color: var(--cor-texto);
+  line-height: 1.6;
 }
 
+/* Link para pular conteúdo - visível ao focar */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-claro);
+  padding: var(--esp-8);
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* =========================================================
+   Cabeçalho e navegação
+   ========================================================= */
 header, footer {
   background-color: var(--cor-primaria);
   color: var(--cor-texto-claro);
@@ -39,48 +66,30 @@ header, footer {
 nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: var(--esp-8) 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--esp-16);
 }
 
-nav ul li {
-  position: relative;
-}
-
 nav ul li a {
   color: var(--cor-texto-claro);
   text-decoration: none;
-  padding: var(--esp-8);
-  display: block;
+  padding: var(--esp-8) var(--esp-16);
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: var(--cor-secundaria2);
+  outline: none;
 }
 
-nav ul li ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--cor-primaria);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  min-width: 150px;
-}
-
-nav ul li:hover ul {
-  display: block;
-}
-
-nav ul li ul li a {
-  padding: var(--esp-8);
-}
-
+/* =========================================================
+   Conteúdo principal
+   ========================================================= */
 main {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -100,6 +109,9 @@ section {
   margin-bottom: var(--esp-16);
 }
 
+/* =========================================================
+   Imagens e mídia
+   ========================================================= */
 img {
   width: 100%;
   height: 300px;
@@ -107,6 +119,9 @@ img {
   border-radius: 8px;
 }
 
+/* =========================================================
+   Botões e interações
+   ========================================================= */
 button {
   padding: var(--esp-8) var(--esp-16);
   background-color: var(--cor-primaria);
@@ -114,13 +129,12 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: var(--cor-acento);
-}
-
+button:hover,
 button:focus {
+  background-color: var(--cor-acento);
   outline: 2px solid var(--cor-secundaria2);
 }
 
@@ -133,6 +147,9 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* =========================================================
+   Formulários e campos
+   ========================================================= */
 form {
   max-width: 600px;
   margin: auto;
@@ -142,42 +159,30 @@ form {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.alert {
-  padding: var(--esp-16);
-  background-color: var(--cor-acento);
-  color: var(--cor-texto-claro);
-  border-radius: 4px;
-  margin-bottom: var(--esp-16);
+label {
+  display: block;
+  margin-bottom: var(--esp-4);
+  font-weight: bold;
 }
 
-.toast {
-  padding: var(--esp-8);
-  background-color: var(--cor-secundaria2);
-  color: var(--cor-texto-claro);
-  border-radius: 4px;
-  position: fixed;
-  bottom: var(--esp-16);
-  right: var(--esp-16);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
+input, textarea {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  justify-content: center;
-  align-items: center;
+  padding: var(--esp-8);
+  margin-bottom: var(--esp-16);
+  border: 1px solid var(--cor-neutra1);
+  border-radius: 4px;
+  font-size: var(--fonte-md);
 }
 
-.modal-content {
-  background-color: #fff;
-  padding: var(--esp-24);
-  border-radius: 8px;
+input:focus,
+textarea:focus {
+  border-color: var(--cor-secundaria2);
+  outline: 2px solid var(--cor-secundaria2);
 }
 
+/* =========================================================
+   Elementos de alerta e destaque
+   ========================================================= */
 .badge {
   display: inline-block;
   padding: var(--esp-4) var(--esp-8);
@@ -185,41 +190,68 @@ form {
   color: var(--cor-texto-claro);
   border-radius: 4px;
   font-size: var(--fonte-sm);
-  margin-right: var(--esp-8);
+  margin-top: var(--esp-8);
 }
 
-@media (max-width: 1200px) {
-  main {
-    grid-template-columns: repeat(8, 1fr);
-  }
-}
-
+/* =========================================================
+   Responsividade
+   ========================================================= */
 @media (max-width: 992px) {
   main {
     grid-template-columns: repeat(6, 1fr);
   }
 }
-
 @media (max-width: 768px) {
   main {
     grid-template-columns: repeat(4, 1fr);
   }
   nav ul {
     flex-direction: column;
+    align-items: center;
   }
 }
-
 @media (max-width: 576px) {
   main {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   img {
     height: auto;
   }
 }
 
-@media (max-width: 400px) {
-  main {
-    grid-template-columns: 1fr;
-  }
+/* =========================================================
+   Acessibilidade: Modo escuro e alto contraste
+   ========================================================= */
+
+/* Modo escuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #0d47a1;
+}
+body.dark-mode button {
+  background-color: #1565c0;
+}
+
+/* Alto contraste */
+body.alto-contraste {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+body.alto-contraste a,
+body.alto-contraste button {
+  background-color: #ff0 !important;
+  color: #000 !important;
+  border: 2px solid #fff !important;
+}
+
+/* =========================================================
+   Foco visível para navegação por teclado
+   ========================================================= */
+:focus {
+  outline: 3px solid #ffbf00;
+  outline-offset: 2px;
 }
