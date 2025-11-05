@@ -1,6 +1,3 @@
-/* ==============================
-   VARIÁVEIS E TEMAS
-============================== */
 :root {
   --cor-primaria: #004080;
   --cor-secundaria: #f9f9f9;
@@ -10,6 +7,7 @@
   --cor-neutra1: #cccccc;
   --cor-neutra2: #666666;
   --cor-secundaria2: #0080ff;
+  --esp-4: 4px;
   --esp-8: 8px;
   --esp-16: 16px;
   --esp-24: 24px;
@@ -24,27 +22,17 @@
   --fonte-xxl: 32px;
 }
 
-/* ==============================
-   RESET BÁSICO E CORPO
-============================== */
-* {
-  box-sizing: border-box;
-}
-
+/* ===== BASE ===== */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--cor-secundaria);
   color: var(--cor-texto);
-  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* ==============================
-   CABEÇALHO E NAVEGAÇÃO
-============================== */
-header,
-footer {
+header, footer {
   background-color: var(--cor-primaria);
   color: var(--cor-texto-claro);
   padding: var(--esp-16);
@@ -54,57 +42,52 @@ footer {
 nav ul {
   list-style: none;
   padding: 0;
-  margin: var(--esp-8) 0 0 0;
+  margin: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--esp-16);
 }
 
+nav ul li {
+  position: relative;
+}
+
 nav ul li a {
   color: var(--cor-texto-claro);
   text-decoration: none;
-  padding: var(--esp-8) var(--esp-16);
-  border-radius: 4px;
+  padding: var(--esp-8);
+  display: block;
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-  background-color: var(--cor-secundaria2);
-  outline: 2px solid var(--cor-secundaria2);
-  text-decoration: none;
+  text-decoration: underline;
+  outline: none;
 }
 
-/* ==============================
-   BOTÕES DE ACESSIBILIDADE
-============================== */
-.accessibility-tools {
-  margin-top: var(--esp-8);
-  display: flex;
-  justify-content: center;
-  gap: var(--esp-8);
+nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--cor-primaria);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 150px;
 }
 
-.accessibility-tools button {
-  font-size: var(--fonte-sm);
-  background-color: var(--cor-texto-claro);
-  color: var(--cor-primaria);
-  border: 2px solid var(--cor-primaria);
-  border-radius: 4px;
-  cursor: pointer;
-  padding: var(--esp-8) var(--esp-16);
+nav ul li:hover ul,
+nav ul li:focus-within ul {
+  display: block;
 }
 
-.accessibility-tools button:hover,
-.accessibility-tools button:focus {
-  background-color: var(--cor-secundaria2);
-  color: var(--cor-texto-claro);
-  outline: 2px solid var(--cor-secundaria2);
+nav ul li ul li a {
+  padding: var(--esp-8);
 }
 
-/* ==============================
-   CONTEÚDO PRINCIPAL
-============================== */
+/* ===== MAIN ===== */
 main {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -122,7 +105,7 @@ section {
   padding: var(--esp-16);
   background-color: #fff;
   margin-bottom: var(--esp-16);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 img {
@@ -132,43 +115,7 @@ img {
   border-radius: 8px;
 }
 
-/* ==============================
-   FORMULÁRIOS
-============================== */
-form {
-  max-width: 600px;
-  margin: auto;
-  padding: var(--esp-16);
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: var(--esp-8);
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: var(--esp-8);
-  margin-bottom: var(--esp-16);
-  border: 1px solid var(--cor-neutra1);
-  border-radius: 4px;
-  font-size: var(--fonte-md);
-}
-
-input:focus,
-textarea:focus {
-  outline: 3px solid var(--cor-secundaria2);
-  border-color: var(--cor-secundaria2);
-}
-
-/* ==============================
-   BOTÕES GERAIS
-============================== */
+/* ===== BOTÕES ===== */
 button {
   padding: var(--esp-8) var(--esp-16);
   background-color: var(--cor-primaria);
@@ -176,93 +123,206 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s ease;
 }
 
-button:hover,
-button:focus {
+button:hover {
   background-color: var(--cor-acento);
+}
+
+button:focus {
   outline: 2px solid var(--cor-secundaria2);
 }
 
-/* ==============================
-   ELEMENTOS DIVERSOS
-============================== */
+button:active {
+  background-color: var(--cor-neutra2);
+}
+
+button:disabled {
+  background-color: var(--cor-neutra1);
+  cursor: not-allowed;
+}
+
+/* ===== FORMULÁRIOS ===== */
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: var(--esp-16);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin-top: var(--esp-8);
+  margin-bottom: var(--esp-4);
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: var(--esp-8);
+  border: 1px solid var(--cor-neutra1);
+  border-radius: 4px;
+  margin-bottom: var(--esp-16);
+  font-size: var(--fonte-md);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--cor-secundaria2);
+}
+
+/* ===== ALERTAS E MODAIS ===== */
+.alert {
+  padding: var(--esp-16);
+  background-color: var(--cor-acento);
+  color: var(--cor-texto-claro);
+  border-radius: 4px;
+  margin-bottom: var(--esp-16);
+}
+
+.toast {
+  padding: var(--esp-8);
+  background-color: var(--cor-secundaria2);
+  color: var(--cor-texto-claro);
+  border-radius: 4px;
+  position: fixed;
+  bottom: var(--esp-16);
+  right: var(--esp-16);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: var(--esp-24);
+  border-radius: 8px;
+}
+
+/* ===== ELEMENTOS DECORATIVOS ===== */
 .badge {
   display: inline-block;
-  padding: 4px 8px;
+  padding: var(--esp-4) var(--esp-8);
   background-color: var(--cor-secundaria2);
   color: var(--cor-texto-claro);
   border-radius: 4px;
   font-size: var(--fonte-sm);
-}
-
-footer a.skip-link {
-  display: inline-block;
   margin-top: var(--esp-8);
-  color: var(--cor-texto-claro);
-  text-decoration: underline;
 }
 
-/* ==============================
-   MODO ESCURO
-============================== */
+/* ===== CONTROLES DE TEMA ===== */
+.theme-controls {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.theme-controls button {
+  background-color: var(--cor-primaria);
+  color: var(--cor-texto-claro);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.theme-controls button:hover,
+.theme-controls button:focus {
+  outline: 2px solid var(--cor-secundaria2);
+}
+
+/* ===== MODO ESCURO ===== */
 body.dark-mode {
-  background-color: #1a1a1a;
+  background-color: #121212;
   color: #f5f5f5;
 }
 
 body.dark-mode header,
 body.dark-mode footer {
-  background-color: #000;
-}
-
-body.dark-mode nav ul li a {
-  color: #f5f5f5;
-}
-
-body.dark-mode .card,
-body.dark-mode form {
-  background-color: #2b2b2b;
-  color: #f5f5f5;
-}
-
-body.dark-mode button {
-  background-color: #004080;
+  background-color: #1e1e1e;
   color: #fff;
 }
 
-/* ==============================
-   ALTO CONTRASTE
-============================== */
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode form,
+body.dark-mode .card {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background-color: #222;
+  color: #f5f5f5;
+  border: 1px solid #555;
+}
+
+body.dark-mode button {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode a {
+  color: #90caf9;
+}
+
+/* ===== MODO ALTO CONTRASTE ===== */
 body.high-contrast {
   background-color: #000;
   color: #fff;
 }
 
 body.high-contrast header,
-body.high-contrast footer {
+body.high-contrast footer,
+body.high-contrast main,
+body.high-contrast section,
+body.high-contrast form,
+body.high-contrast .card {
   background-color: #000;
   color: #fff;
-}
-
-body.high-contrast a,
-body.high-contrast button {
-  background-color: #ff0;
-  color: #000;
   border: 2px solid #fff;
 }
 
 body.high-contrast input,
+body.high-contrast select,
 body.high-contrast textarea {
   background-color: #000;
   color: #fff;
-  border: 2px solid #ff0;
+  border: 2px solid #fff;
 }
 
-/* ==============================
-   RESPONSIVIDADE
-============================== */
+body.high-contrast a,
+body.high-contrast button {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #fff;
+}
+
+body.high-contrast a:hover,
+body.high-contrast button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1200px) {
   main {
     grid-template-columns: repeat(8, 1fr);
