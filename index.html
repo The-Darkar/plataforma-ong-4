@@ -4,59 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ONG Esperança</title>
+
+  <!-- Descrição para SEO e acessibilidade -->
+  <meta name="description" content="ONG Esperança - Projetos sociais que promovem inclusão e transformação comunitária.">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Preferência de esquema de cores do usuário -->
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Ícone da página -->
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-  <header>
+  <!-- Link de salto rápido para acessibilidade -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header role="banner">
     <h1>ONG Esperança</h1>
-    <nav>
+    <nav aria-label="Navegação principal">
       <ul>
-        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html" aria-current="page">Início</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
+
+    <!-- Botões de acessibilidade -->
+    <div class="acessibilidade">
+      <button id="toggle-contraste" aria-pressed="false">Alto Contraste</button>
+      <button id="toggle-tema" aria-pressed="false">Modo Escuro</button>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Quem Somos</h2>
+  <!-- Conteúdo principal com id para o link de salto -->
+  <main id="conteudo-principal">
+    <section aria-labelledby="quem-somos">
+      <h2 id="quem-somos">Quem Somos</h2>
       <p>Promovemos inclusão social por meio de projetos comunitários.</p>
-      <img src="assets/img/equipe.jpg" alt="Equipe da ONG">
+      <figure>
+        <img src="assets/img/equipe.jpg" alt="Equipe da ONG Esperança reunida durante um evento comunitário.">
+        <figcaption>Equipe da ONG Esperança</figcaption>
+      </figure>
     </section>
 
-    <section>
-      <h2>Missão, Visão e Valores</h2>
+    <section aria-labelledby="missao-visao-valores">
+      <h2 id="missao-visao-valores">Missão, Visão e Valores</h2>
       <ul>
         <li><strong>Missão:</strong> Transformar vidas.</li>
         <li><strong>Visão:</strong> Ser referência em impacto social.</li>
-        <li><strong>Valores:</strong> Transparência, empatia, compromisso.</li>
+        <li><strong>Valores:</strong> Transparência, empatia e compromisso.</li>
       </ul>
     </section>
 
-    <section class="card">
-      <h2>Projetos em Destaque</h2>
-      <img src="assets/img/projetosocial.jpg" alt="Projeto Social">
-      <p>Conheça nossos projetos e como você pode ajudar a transformar a comunidade.</p>
-      <button>Saiba Mais</button>
-      <div class="badge">Destaque</div>
+    <section class="card" aria-labelledby="projetos-destaque">
+      <h2 id="projetos-destaque">Projetos em Destaque</h2>
+      <figure>
+        <img src="assets/img/projetosocial.jpg" alt="Voluntários realizando atividades em um projeto social.">
+        <figcaption>Projeto Social em andamento</figcaption>
+      </figure>
+      <p>Conheça nossos projetos e descubra como você pode ajudar a transformar a comunidade.</p>
+      <button type="button" aria-label="Saiba mais sobre os projetos">Saiba Mais</button>
+      <div class="badge" aria-hidden="true">Destaque</div>
     </section>
 
-    <section>
-      <h2>Contato</h2>
-      <p>Email: contato@ongesperanca.org</p>
-      <p>Telefone: (11) 99999-9999</p>
-      <form>
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Mensagem" required></textarea>
+    <section aria-labelledby="contato">
+      <h2 id="contato">Contato</h2>
+      <address>
+        <p><strong>Email:</strong> <a href="mailto:contato@ongesperanca.org">contato@ongesperanca.org</a></p>
+        <p><strong>Telefone:</strong> <a href="tel:+5511999999999">(11) 99999-9999</a></p>
+      </address>
+
+      <!-- Formulário acessível -->
+      <form aria-label="Formulário de contato">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" name="nome" placeholder="Seu nome" required>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="seuemail@exemplo.com" required>
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" required></textarea>
+
         <button type="submit">Enviar</button>
       </form>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 ONG Esperança</p>
+  <footer role="contentinfo">
+    <p>&copy; 2025 ONG Esperança. Todos os direitos reservados.</p>
   </footer>
+
+  <!-- Script JS acessível -->
+  <script src="js/script.js"></script>
 </body>
 </html>
