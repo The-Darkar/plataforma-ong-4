@@ -8,40 +8,57 @@ Este projeto foi desenvolvido como parte da disciplina de **Desenvolvimento Fron
 - Implementar formulários interativos com validação nativa.
 - Criar um ambiente de navegação de página única (SPA) usando JavaScript.
 - Validar dados de entrada de formulários e fornecer feedback ao usuário.
+- Aplicar boas práticas de versionamento, acessibilidade e deploy.
 
 ## 🧩 Estrutura do Projeto
-A estrutura do projeto é a seguinte:
 
-plataforma-ong-3/
-├── assets/
-│   └── img/
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
-├── index.html
-├── projetos.html
-└── cadastro.html
+plataforma-ong-3/ ├── assets/ │   └── img/ ├── css/ │   └── style.css ├── js/ │   └── script.js ├── index.html ├── projetos.html ├── cadastro.html └── README.md
 
-- **index.html**: Página inicial da ONG, apresentando a missão, visão, valores e projetos.
-- **projetos.html**: Página com informações detalhadas sobre os projetos sociais da ONG.
-- **cadastro.html**: Formulário de cadastro para voluntários, com validação de dados e máscaras de input.
-- **style.css**: Arquivo de estilos que define o layout e design das páginas.
-- **script.js**: Arquivo JavaScript responsável pela navegação (SPA), validação de formulário e manipulação de dados.
+- **index.html**: Página inicial da ONG, apresentando missão, visão, valores e projetos.
+- **projetos.html**: Página com informações detalhadas sobre os projetos sociais.
+- **cadastro.html**: Formulário de cadastro para voluntários, com validação e máscaras.
+- **style.css**: Estilos responsivos, modo escuro e alto contraste.
+- **script.js**: SPA, validação de formulário, acessibilidade e persistência de modo.
 
 ## 🧪 Tecnologias Utilizadas
-- **HTML5**: Estrutura semântica das páginas.
-- **CSS3**: Estilos responsivos, design moderno e acessível.
-- **JavaScript**: Manipulação do DOM, validação de formulários, navegação entre páginas (SPA).
-- **GitHub**: Repositório para versionamento de código e hospedagem do projeto.
+- **HTML5**: Estrutura semântica e acessível.
+- **CSS3**: Layout responsivo, contraste mínimo, modo escuro e alto contraste.
+- **JavaScript**: SPA com `fetch`, máscaras de input, validação e acessibilidade.
+- **Git/GitHub**: Versionamento com GitFlow, commits semânticos, releases e Pull Requests.
 
 ## ✅ Requisitos Atendidos
-- **Estrutura semântica**: As páginas foram construídas utilizando elementos semânticos do HTML5, como `<header>`, `<nav>`, `<main>`, `<section>`, e `<footer>`.
-- **Três páginas HTML**: `index.html`, `projetos.html` e `cadastro.html`, todas com conteúdo relevante e imagens associadas.
-- **Formulário com validação**: O formulário de cadastro foi implementado com validação nativa dos campos, como nome, email, telefone e aceite dos termos.
-- **Máscaras de input**: Campos como telefone e CPF foram implementados com máscaras de entrada.
-- **SPA (Single Page Application)**: A navegação entre as páginas é feita de forma dinâmica, sem recarregar a página, utilizando JavaScript e o método `fetch`.
-- **Estrutura de pastas organizada**: O projeto foi estruturado com pastas separadas para imagens (`assets/img`), estilos (`css`) e scripts (`js`), garantindo uma boa organização do código.
 
+### Estrutura e Funcionalidade
+- Páginas semânticas com `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`.
+- SPA com navegação dinâmica via JavaScript.
+- Formulário com validação nativa e máscaras para CPF, telefone e CEP.
+- Organização de pastas por função (assets, css, js).
 
+### Acessibilidade (WCAG 2.1 Nível AA)
+- Navegação por teclado com `tabindex` e `accesskey`.
+- Estrutura semântica e uso de `aria-label`, `aria-describedby`, `aria-live`.
+- Contraste mínimo de 4.5:1 para texto normal.
+- Suporte a leitores de tela com elementos `.sr-only`.
+- Modo escuro e versão de alto contraste ativável via botão.
 
+### Versionamento com Git/GitHub
+- Estratégia de branching com GitFlow.
+- Histórico de commits semântico e organizado.
+- Releases com versionamento semântico.
+- Pull Requests documentados, Issues e Milestones utilizados.
+
+### Otimização para Produção
+- CSS, JS e HTML preparados para minificação.
+- Imagens otimizadas e compressão configurada.
+- Código modular e limpo, pronto para deploy.
+
+## 🌍 Impacto Social e Profissional
+- Projeto voltado para inclusão digital e apoio ao terceiro setor.
+- Desenvolvimento de competências técnicas, profissionais e sociais.
+- Portfólio acadêmico com foco em acessibilidade e responsabilidade social.
+- Contribuição para causas reais com potencial de aplicação prática.
+
+## 🚀 Deploy e Entrega
+Este projeto está hospedado em um repositório público no GitHub, conforme exigido pela atividade. O link de acesso está disponível na plataforma de entrega.
+
+---
