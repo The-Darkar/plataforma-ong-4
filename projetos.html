@@ -5,41 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos Sociais</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js" defer></script>
+  <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
   <header>
     <h1>Projetos Sociais</h1>
-    <nav>
+    <div class="accessibility-controls">
+      <button id="toggle-contrast" aria-pressed="false" title="Alternar Modo de Alto Contraste">
+        Contraste
+      </button>
+      <button id="toggle-darkmode" aria-pressed="false" title="Alternar Modo Escuro">
+        Escuro
+      </button>
+    </div>
+    <nav aria-label="Navegação principal">
       <ul>
         <li><a href="index.html">Início</a></li>
-        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="projetos.html" aria-current="page">Projetos</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
   </header>
 
-  <div id="content">
-    <section class="card">
-      <h2>Projeto Comunidade Viva</h2>
+  <div id="content" role="main" id="conteudo-principal" tabindex="-1">
+    
+    <article class="card" aria-labelledby="projeto-comunidade">
+      <h2 id="projeto-comunidade">Projeto Comunidade Viva</h2>
       <p>Oferece oficinas de arte e educação para crianças.</p>
-      <img src="assets/img/crianca.jpg" alt="Projeto Comunidade Viva">
-    </section>
+      <img src="assets/img/crianca.jpg" alt="Criança sorrindo enquanto participa de oficina de pintura.">
+    </article>
 
-    <section class="card">
-      <h2>Voluntariado</h2>
+    <article class="card" aria-labelledby="projeto-voluntariado">
+      <h2 id="projeto-voluntariado">Voluntariado</h2>
       <p>Participe como voluntário e transforme vidas.</p>
-      <img src="assets/img/voluntariado.jpg" alt="Voluntariado em ação">
-    </section>
+      <img src="assets/img/voluntariado.jpg" alt="Grupo de voluntários trabalhando juntos em um mutirão.">
+    </article>
 
-    <section class="card">
-      <h2>Como Doar</h2>
+    <article class="card" aria-labelledby="projeto-doar">
+      <h2 id="projeto-doar">Como Doar</h2>
       <p>Doe via Pix: doacoes@ongesperanca.org</p>
-    </section>
+    </article>
   </div>
 
   <footer>
-    <p>&copy; 2025 ONG Esperança</p>
+    <small>&copy; 2025 ONG Esperança</small>
   </footer>
+
+  <script src="js/script.js" defer></script>
 </body>
 </html>
