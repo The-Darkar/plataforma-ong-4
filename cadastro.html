@@ -5,72 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro - ONG Esperança</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js" defer></script>
+  <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
   <header>
     <h1>Cadastro de Voluntários</h1>
-    <nav>
+    <div class="accessibility-controls">
+      <button id="toggle-contrast" aria-pressed="false" title="Alternar Modo de Alto Contraste">
+        Contraste
+      </button>
+      <button id="toggle-darkmode" aria-pressed="false" title="Alternar Modo Escuro">
+        Escuro
+      </button>
+    </div>
+    <nav aria-label="Navegação principal">
       <ul>
         <li><a href="index.html">Início</a></li>
         <li><a href="projetos.html">Projetos</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="cadastro.html" aria-current="page">Cadastro</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <form id="formCadastro">
-      <h2>Formulário de Cadastro</h2>
+  <div id="content" role="main" id="conteudo-principal" tabindex="-1">
+    
+    <section class="card" aria-labelledby="form-titulo">
+      <form id="formCadastro" novalidate>
+        <h2 id="form-titulo">Formulário de Cadastro</h2>
 
-      <label for="nome">Nome Completo</label>
-      <input type="text" id="nome" name="nome" required>
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" name="nome" required 
+               aria-invalid="false" aria-describedby="nome-error">
+        <span class="error-message" id="nome-error" role="alert"></span>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required 
+               aria-invalid="false" aria-describedby="email-error">
+        <span class="error-message" id="email-error" role="alert"></span>
 
-      <label for="telefone">Telefone</label>
-      <input type="tel" id="telefone" name="telefone" required>
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" required 
+               aria-invalid="false" aria-describedby="telefone-error" 
+               placeholder="(XX) XXXXX-XXXX">
+        <span class="error-message" id="telefone-error" role="alert"></span>
 
-      <label for="projeto">Projeto de Interesse</label>
-      <select id="projeto" name="projeto" required>
-        <option value="comunidade-viva">Projeto Comunidade Viva</option>
-        <option value="voluntariado">Voluntariado</option>
-        <option value="doacoes">Doações</option>
-      </select>
+        <label for="projeto">Projeto de Interesse</label>
+        <select id="projeto" name="projeto" required 
+                aria-invalid="false" aria-describedby="projeto-error">
+          <option value="" disabled selected>Selecione um projeto...</option>
+          <option value="comunidade-viva">Projeto Comunidade Viva</option>
+          <option value="voluntariado">Voluntariado</option>
+          <option value="doacoes">Doações</option>
+        </select>
+        <span class="error-message" id="projeto-error" role="alert"></span>
 
-      <label>
-        <input type="checkbox" id="aceite" name="aceite" required>
-        Concordo com os termos
-      </label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="aceite" name="aceite" required 
+                 aria-invalid="false" aria-describedby="aceite-error">
+          <label for="aceite">Concordo com os termos</label>
+          <span class="error-message" id="aceite-error" role="alert"></span>
+        </div>
 
-      <button type="submit">Enviar Cadastro</button>
-    </form>
-  </main>
+        <button type="submit">Enviar Cadastro</button>
+      </form>
+      
+      <div id="success-message" role="status" aria-live="polite"></div>
 
-  <footer>
-    <p>&copy; 2025 ONG Esperança</p>
+    </section>
+  </div> <footer>
+    <small>&copy; 2025 ONG Esperança</small>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const formCadastro = document.getElementById('formCadastro');
-      const telefone = document.getElementById("telefone");
-
-      formCadastro.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (formCadastro.checkValidity()) {
-          alert("Cadastro realizado com sucesso!");
-          formCadastro.reset(); // Limpar formulário após envio
-        } else {
-          alert("Por favor, preencha todos os campos corretamente.");
-        }
-      });
-
-      telefone.addEventListener("input", () => {
-        telefone.value = telefone.value.replace(/\D/g, "").replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-      });
-    });
-  </script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
