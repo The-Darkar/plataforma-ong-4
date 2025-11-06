@@ -38,7 +38,7 @@
       <h2>Projetos em Destaque</h2>
       <img src="assets/img/projetosocial.jpg" alt="Projeto Social">
       <p>Conheça nossos projetos e como você pode ajudar a transformar a comunidade.</p>
-      <button>Saiba Mais</button>
+      <button id="saiba-mais-btn" tabindex="0">Saiba Mais</button>
       <div class="badge">Destaque</div>
     </section>
 
@@ -47,10 +47,13 @@
       <p>Email: contato@ongesperanca.org</p>
       <p>Telefone: (11) 99999-9999</p>
       <form>
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Mensagem" required></textarea>
-        <button type="submit">Enviar</button>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Nome" required aria-describedby="nome-desc">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Email" required aria-describedby="email-desc">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" placeholder="Mensagem" required aria-describedby="mensagem-desc"></textarea>
+        <button type="submit" id="enviar-btn" tabindex="0">Enviar</button>
       </form>
     </section>
   </main>
@@ -58,5 +61,10 @@
   <footer>
     <p>&copy; 2025 ONG Esperança</p>
   </footer>
+
+  <!-- Toggle para modo escuro e alto contraste -->
+  <button id="toggle-modo" tabindex="0" aria-label="Alternar modo escuro e alto contraste">Modo Escuro/Alto Contraste</button>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
