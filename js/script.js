@@ -1,12 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("content");
   const links = document.querySelectorAll("nav a");
+  const toggleBtn = document.getElementById("toggle-modo");
+
+  function applyAccessibilityFeedback(message) {
+    let liveRegion = document.getElementById("live-region");
+    if (!liveRegion) {
+      liveRegion = document.createElement("div");
+      liveRegion.id = "live-region";
+      liveRegion.setAttribute("aria-live", "polite");
+      liveRegion.classList.add("sr-only");
+      document.body.appendChild(liveRegion);
+    }
+    liveRegion.textContent = message;
+  }
 
   async function loadPage(url) {
     try {
+      applyAccessibilityFeedback("Carregando conteúdo...");
       const response = await fetch(url);
       if (!response.ok) throw new Error("Página não encontrada");
-      let html = await response.text();
+      const html = await response.text();
 
       const temp = document.createElement("div");
       temp.innerHTML = html;
@@ -14,8 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const main = temp.querySelector("main, #content") || temp;
       content.innerHTML = main.innerHTML;
       initMasks();
+      applyAccessibilityFeedback("Conteúdo carregado com sucesso.");
+      const firstFocusable = content.querySelector("a, button, input, textarea");
+      if (firstFocusable) firstFocusable.focus();
     } catch (error) {
       content.innerHTML = `<p>Erro ao carregar a página: ${error.message}</p>`;
+      applyAccessibilityFeedback("Erro ao carregar conteúdo.");
     }
   }
 
@@ -73,5 +91,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function toggleModo() {
+    const body = document.body;
+    const isEscuro = body.classList.toggle("modo-escuro");
+    const isContraste = body.classList.toggle("alto-contraste");
+    toggleBtn.setAttribute("aria-pressed", isEscuro || isContraste);
+    localStorage.setItem("modo", JSON.stringify({ escuro: isEscuro, contraste: isContraste }));
+  }
+
+  toggleBtn.addEventListener("click", toggleModo);
+
+  function restoreModo() {
+    const saved = JSON.parse(localStorage.getItem("modo"));
+    if (saved) {
+      if (saved.escuro) document.body.classList.add("modo-escuro");
+      if (saved.contraste) document.body.classList.add("alto-contraste");
+      toggleBtn.setAttribute("aria-pressed", saved.escuro || saved.contraste);
+    }
+  }
+
+  restoreModo();
   loadPage("index.html");
 });
