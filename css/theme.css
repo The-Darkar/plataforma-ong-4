@@ -1,0 +1,103 @@
+body.high-contrast {
+  --cor-primaria: #0000ff;
+  --cor-secundaria: #ffffff;
+  --cor-acento: #ff0000;
+  --cor-texto: #000000;
+  --cor-texto-claro: #ffffff;
+  --cor-neutra1: #666666;
+  --cor-neutra2: #cccccc;
+  
+  background-color: var(--cor-secundaria) !important;
+  color: var(--cor-texto) !important;
+}
+
+body.high-contrast header, 
+body.high-contrast footer {
+  background-color: var(--cor-primaria) !important;
+  color: var(--cor-texto-claro) !important;
+}
+
+body.high-contrast a,
+body.high-contrast button,
+body.high-contrast .button-link {
+  color: var(--cor-texto) !important;
+  background-color: var(--cor-neutra2) !important;
+  border: 2px solid var(--cor-texto) !important;
+}
+
+body.high-contrast nav ul li a {
+  color: var(--cor-texto-claro) !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+body.high-contrast a:hover,
+body.high-contrast button:hover,
+body.high-contrast button:focus,
+body.high-contrast .button-link:hover {
+  background-color: var(--cor-acento) !important;
+  color: var(--cor-texto-claro) !important;
+}
+
+body.high-contrast .card,
+body.high-contrast form {
+  background-color: var(--cor-neutra2) !important;
+  border: 4px solid var(--cor-texto) !important;
+  box-shadow: none !important;
+}
+
+body.high-contrast input, 
+body.high-contrast select, 
+body.high-contrast textarea {
+  border: 2px solid var(--cor-texto) !important;
+  background-color: var(--cor-secundaria) !important;
+  color: var(--cor-texto) !important;
+}
+
+body.dark-mode {
+  --cor-primaria: #1a1a1a;
+  --cor-secundaria: #2c2c2c;
+  --cor-acento: #ff6666;
+  --cor-texto: #ffffff;
+  --cor-texto-claro: #000000;
+  --cor-neutra1: #444444;
+  --cor-neutra2: #666666;
+
+  background-color: var(--cor-secundaria) !important;
+  color: var(--cor-texto) !important;
+}
+
+body.dark-mode header, 
+body.dark-mode footer {
+  background-color: var(--cor-primaria) !important;
+  color: var(--cor-texto) !important;
+}
+
+body.dark-mode .card,
+body.dark-mode form {
+  background-color: var(--cor-neutra1) !important;
+  border: 1px solid var(--cor-neutra2);
+}
+
+body.dark-mode nav ul li a {
+  color: var(--cor-texto) !important;
+}
+
+body.dark-mode input, 
+body.dark-mode select, 
+body.dark-mode textarea {
+  background-color: var(--cor-neutra2) !important;
+  color: var(--cor-texto) !important;
+  border: 1px solid var(--cor-neutra2);
+}
+
+body.dark-mode button,
+body.dark-mode .button-link {
+  background-color: var(--cor-acento) !important;
+  color: var(--cor-texto-claro) !important;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .button-link:hover {
+  background-color: #e60000 !important; 
+}
