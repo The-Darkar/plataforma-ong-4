@@ -10,16 +10,17 @@
 <body>
   <header>
     <h1>Cadastro de Voluntários</h1>
-    <nav>
+    <nav role="navigation">
       <ul>
         <li><a href="index.html">Início</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
+    <button id="toggle-mode" aria-label="Alternar entre modo normal, escuro e alto contraste">🌙 Alternar Modo</button>
   </header>
 
-  <main>
+  <main role="main">
     <form id="formCadastro">
       <h2>Formulário de Cadastro</h2>
 
@@ -39,7 +40,7 @@
         <option value="doacoes">Doações</option>
       </select>
 
-      <label>
+      <label for="aceite">
         <input type="checkbox" id="aceite" name="aceite" required>
         Concordo com os termos
       </label>
@@ -61,7 +62,7 @@
         e.preventDefault();
         if (formCadastro.checkValidity()) {
           alert("Cadastro realizado com sucesso!");
-          formCadastro.reset(); // Limpar formulário após envio
+          formCadastro.reset();
         } else {
           alert("Por favor, preencha todos os campos corretamente.");
         }
