@@ -2,6 +2,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("content");
   const links = document.querySelectorAll("nav a");
 
+  // Toggle de modos (acessibilidade)
+  const toggleModeBtn = document.getElementById("toggle-mode");
+  let currentMode = localStorage.getItem("mode") || "normal";
+  document.body.className = currentMode;
+
+  if (toggleModeBtn) {
+    toggleModeBtn.addEventListener("click", () => {
+      if (currentMode === "normal") {
+        currentMode = "dark-mode";
+      } else if (currentMode === "dark-mode") {
+        currentMode = "high-contrast";
+      } else {
+        currentMode = "normal";
+      }
+      document.body.className = currentMode;
+      localStorage.setItem("mode", currentMode);
+    });
+  }
+
   async function loadPage(url) {
     try {
       const response = await fetch(url);
