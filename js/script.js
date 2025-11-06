@@ -52,23 +52,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function initPageSpecificScripts() {
-    const formCadastro = document.getElementById("formCadastro");
-    if (formCadastro) {
-      initFormValidation(formCadastro, 'success-message');
-    }
-    
-    const formContato = document.getElementById("formContato");
-    if (formContato) {
-      initFormValidation(formContato, 'contato-success-message');
-    }
+  function initMascaraCPF(cpfInput) {
+    cpfInput.addEventListener("input", () => {
+      let valor = cpfInput.value.replace(/\D/g, "");
+      valor = valor.substring(0, 11);
 
-    const telefone = document.getElementById("telefone");
-    if (telefone) {
-      initMascaraTelefone(telefone);
-    }
+      if (valor.length > 9) {
+        valor = valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      } else if (valor.length > 6) {
+        valor = valor.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+      } else if (valor.length > 3) {
+        valor = valor.replace(/(\d{3})(\d{0,3})/, "$1.$2");
+      }
+      cpfInput.value = valor;
+    });
   }
 
+  function initMascaraCEP(cepInput) {
+    cepInput.addEventListener("input", () => {
+      let valor = cepInput.value.replace(/\D/g, "");
+      valor = valor.substring(0, 8);
+
+      if (valor.length > 5) {
+        valor = valor.replace(/(\d{5})(\d{3})/, "$1-$2");
+      }
+      cepInput.value = valor;
+    });
+  }
+  
   function initMascaraTelefone(telefoneInput) {
     telefoneInput.addEventListener("input", () => {
       let valor = telefoneInput.value.replace(/\D/g, "");
@@ -84,6 +95,33 @@ document.addEventListener("DOMContentLoaded", () => {
         telefoneInput.value = valor.replace(/(\d{0,2})/, "($1");
       }
     });
+  }
+  
+  function initPageSpecificScripts() {
+    const formCadastro = document.getElementById("formCadastro");
+    if (formCadastro) {
+      initFormValidation(formCadastro, 'success-message');
+    }
+    
+    const formContato = document.getElementById("formContato");
+    if (formContato) {
+      initFormValidation(formContato, 'contato-success-message');
+    }
+
+    const telefone = document.getElementById("telefone");
+    if (telefone) {
+      initMascaraTelefone(telefone);
+    }
+    
+    const cpf = document.getElementById("cpf");
+    if (cpf) {
+        initMascaraCPF(cpf);
+    }
+    
+    const cep = document.getElementById("cep");
+    if (cep) {
+        initMascaraCEP(cep);
+    }
   }
 
   function initFormValidation(form, successMessageId) {
@@ -123,6 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
           errorElement.textContent = 'Por favor, insira um formato válido.';
         } else if (field.id === 'telefone' && (field.value.replace(/\D/g, "").length < 10)) {
           errorElement.textContent = 'Telefone inválido. Use (XX) XXXXX-XXXX.';
+        } else if (field.id === 'cpf' && (field.value.replace(/\D/g, "").length !== 11)) {
+          errorElement.textContent = 'CPF inválido. O CPF deve ter 11 dígitos.';
+        } else if (field.id === 'cep' && (field.value.replace(/\D/g, "").length !== 8)) {
+          errorElement.textContent = 'CEP inválido. O CEP deve ter 8 dígitos.';
         }
       }
     });
