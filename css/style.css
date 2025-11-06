@@ -27,6 +27,20 @@ body {
   padding: 0;
   background-color: var(--cor-secundaria);
   color: var(--cor-texto);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+  --cor-secundaria: #333;
+  --cor-texto: #fff;
+  --cor-texto-claro: #000;
+}
+
+.high-contrast {
+  --cor-secundaria: #000;
+  --cor-texto: #fff;
+  --cor-primaria: #fff;
+  --cor-texto-claro: #000;
 }
 
 header, footer {
@@ -34,6 +48,21 @@ header, footer {
   color: var(--cor-texto-claro);
   padding: var(--esp-16);
   text-align: center;
+}
+
+#toggle-mode {
+  position: absolute;
+  top: var(--esp-16);
+  right: var(--esp-16);
+  background: none;
+  border: none;
+  color: var(--cor-texto-claro);
+  font-size: var(--fonte-lg);
+  cursor: pointer;
+}
+
+#toggle-mode:focus {
+  outline: 2px solid var(--cor-secundaria2);
 }
 
 nav ul {
@@ -59,6 +88,10 @@ nav ul li a {
 
 nav ul li a:hover {
   text-decoration: underline;
+}
+
+nav ul li a:focus {
+  outline: 2px solid var(--cor-secundaria2);
 }
 
 nav ul li ul {
@@ -98,6 +131,11 @@ section {
   padding: var(--esp-16);
   background-color: #fff;
   margin-bottom: var(--esp-16);
+}
+
+.dark-mode .card, .high-contrast .card {
+  background-color: var(--cor-secundaria);
+  border-color: var(--cor-texto);
 }
 
 img {
@@ -140,6 +178,23 @@ form {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.dark-mode form, .high-contrast form {
+  background-color: var(--cor-secundaria);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: var(--esp-8);
+  margin-bottom: var(--esp-16);
+  border: 1px solid var(--cor-neutra1);
+  border-radius: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--cor-secundaria2);
 }
 
 .alert {
