@@ -45,11 +45,23 @@
                aria-invalid="false" aria-describedby="email-error">
         <span class="error-message" id="email-error" role="alert"></span>
 
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" required 
+               aria-invalid="false" aria-describedby="cpf-error" 
+               placeholder="000.000.000-00" maxlength="14">
+        <span class="error-message" id="cpf-error" role="alert"></span>
+
         <label for="telefone">Telefone</label>
         <input type="tel" id="telefone" name="telefone" required 
                aria-invalid="false" aria-describedby="telefone-error" 
                placeholder="(XX) XXXXX-XXXX">
         <span class="error-message" id="telefone-error" role="alert"></span>
+        
+        <label for="cep">CEP</label>
+        <input type="text" id="cep" name="cep" required 
+               aria-invalid="false" aria-describedby="cep-error" 
+               placeholder="00000-000" maxlength="9">
+        <span class="error-message" id="cep-error" role="alert"></span>
 
         <label for="projeto">Projeto de Interesse</label>
         <select id="projeto" name="projeto" required 
@@ -74,7 +86,9 @@
       <div id="success-message" role="status" aria-live="polite"></div>
 
     </section>
-  </div> <footer>
+  </div>
+
+  <footer>
     <small>&copy; 2025 ONG Esperança</small>
   </footer>
 
