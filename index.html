@@ -5,28 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ONG Esperança</title>
   <link rel="stylesheet" href="css/style.css">
-</head>
+  <link rel="stylesheet" href="css/theme.css"> </head>
 <body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
   <header>
     <h1>ONG Esperança</h1>
-    <nav>
+    
+    <div class="accessibility-controls">
+      <button id="toggle-contrast" aria-pressed="false" title="Alternar Modo de Alto Contraste">
+        Contraste
+      </button>
+      <button id="toggle-darkmode" aria-pressed="false" title="Alternar Modo Escuro">
+        Escuro
+      </button>
+    </div>
+
+    <nav aria-label="Navegação principal">
       <ul>
-        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html" aria-current="page">Início</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section>
-      <h2>Quem Somos</h2>
+  <div id="content" role="main" id="conteudo-principal" tabindex="-1">
+    
+    <section aria-labelledby="quem-somos-titulo">
+      <h2 id="quem-somos-titulo">Quem Somos</h2>
       <p>Promovemos inclusão social por meio de projetos comunitários.</p>
-      <img src="assets/img/equipe.jpg" alt="Equipe da ONG">
+      <img src="assets/img/equipe.jpg" alt="Membros da equipe da ONG Esperança sorrindo e trabalhando juntos.">
     </section>
 
-    <section>
-      <h2>Missão, Visão e Valores</h2>
+    <section aria-labelledby="missao-titulo">
+      <h2 id="missao-titulo">Missão, Visão e Valores</h2>
       <ul>
         <li><strong>Missão:</strong> Transformar vidas.</li>
         <li><strong>Visão:</strong> Ser referência em impacto social.</li>
@@ -34,29 +47,42 @@
       </ul>
     </section>
 
-    <section class="card">
-      <h2>Projetos em Destaque</h2>
-      <img src="assets/img/projetosocial.jpg" alt="Projeto Social">
+    <article class="card" aria-labelledby="destaque-titulo">
+      <h2 id="destaque-titulo">Projetos em Destaque</h2>
+      <img src="assets/img/projetosocial.jpg" alt="Crianças participando de uma atividade educativa do projeto social.">
       <p>Conheça nossos projetos e como você pode ajudar a transformar a comunidade.</p>
-      <button>Saiba Mais</button>
-      <div class="badge">Destaque</div>
-    </section>
+      
+      <a href="projetos.html" class="button-link">Saiba Mais</a>
+      
+      <span class="badge" aria-label="Status: Destaque">Destaque</span>
+    </article>
 
-    <section>
-      <h2>Contato</h2>
+    <section aria-labelledby="contato-titulo">
+      <h2 id="contato-titulo">Contato</h2>
       <p>Email: contato@ongesperanca.org</p>
       <p>Telefone: (11) 99999-9999</p>
-      <form>
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Mensagem" required></textarea>
+      
+      <form id="formContato" novalidate>
+        <label for="contato-nome">Nome</label>
+        <input type="text" id="contato-nome" name="contato-nome" placeholder="Seu nome completo" required>
+        <span class="error-message" id="contato-nome-error" role="alert"></span>
+
+        <label for="contato-email">Email</label>
+        <input type="email" id="contato-email" name="contato-email" placeholder="seu.email@exemplo.com" required>
+        <span class="error-message" id="contato-email-error" role="alert"></span>
+
+        <label for="contato-mensagem">Mensagem</label>
+        <textarea id="contato-mensagem" name="contato-mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+        <span class="error-message" id="contato-mensagem-error" role="alert"></span>
+        
         <button type="submit">Enviar</button>
+        <div id="contato-success-message" role="status" aria-live="polite"></div>
       </form>
     </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 ONG Esperança</p>
+  </div> <footer>
+    <small>&copy; 2025 ONG Esperança</small>
   </footer>
+
+  <script src="js/script.js" defer></script>
 </body>
 </html>
