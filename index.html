@@ -4,83 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ONG Esperança</title>
-
-  <!-- Descrição e Acessibilidade -->
-  <meta name="description" content="ONG Esperança — promovendo inclusão social por meio de projetos comunitários.">
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Contraste e tema -->
-  <script defer src="js/theme-toggle.js"></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/theme-toggle.js" defer></script>
 </head>
 <body>
-  <header role="banner">
+  <header>
     <h1>ONG Esperança</h1>
-
-    <nav role="navigation" aria-label="Menu principal">
+    <nav>
       <ul>
-        <li><a href="index.html" aria-current="page">Início</a></li>
+        <li><a href="index.html">Início</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
-
-    <!-- Botões de acessibilidade -->
-    <div class="accessibility-tools">
-      <button id="toggle-dark" aria-pressed="false" aria-label="Ativar modo escuro">🌙 Modo Escuro</button>
-      <button id="toggle-contrast" aria-pressed="false" aria-label="Ativar alto contraste">🌓 Alto Contraste</button>
+    <!-- Botões de tema, estáticos, uma vez só -->
+    <div class="theme-controls">
+      <button id="btn-dark-mode" aria-label="Alternar modo escuro">🌙 Modo Escuro</button>
+      <button id="btn-contrast" aria-label="Alternar alto contraste">🌓 Alto Contraste</button>
     </div>
   </header>
 
-  <main id="conteudo" tabindex="-1">
-    <section aria-labelledby="quem-somos">
-      <h2 id="quem-somos">Quem Somos</h2>
+  <main id="content">
+    <section>
+      <h2>Quem Somos</h2>
       <p>Promovemos inclusão social por meio de projetos comunitários.</p>
-      <img src="assets/img/equipe.jpg" alt="Equipe da ONG Esperança reunida em evento comunitário">
+      <img src="assets/img/equipe.jpg" alt="Equipe da ONG">
     </section>
 
-    <section aria-labelledby="missao-visao-valores">
-      <h2 id="missao-visao-valores">Missão, Visão e Valores</h2>
+    <section>
+      <h2>Missão, Visão e Valores</h2>
       <ul>
         <li><strong>Missão:</strong> Transformar vidas.</li>
         <li><strong>Visão:</strong> Ser referência em impacto social.</li>
-        <li><strong>Valores:</strong> Transparência, empatia e compromisso.</li>
+        <li><strong>Valores:</strong> Transparência, empatia, compromisso.</li>
       </ul>
     </section>
 
-    <section class="card" aria-labelledby="projetos-destaque">
-      <h2 id="projetos-destaque">Projetos em Destaque</h2>
-      <figure>
-        <img src="assets/img/projetosocial.jpg" alt="Voluntários trabalhando em projeto social">
-        <figcaption>Projeto Social em andamento.</figcaption>
-      </figure>
+    <section class="card">
+      <h2>Projetos em Destaque</h2>
+      <img src="assets/img/projetosocial.jpg" alt="Projeto Social">
       <p>Conheça nossos projetos e como você pode ajudar a transformar a comunidade.</p>
-      <button type="button" aria-label="Saiba mais sobre os projetos">Saiba Mais</button>
-      <span class="badge" aria-hidden="true">Destaque</span>
+      <button>Saiba Mais</button>
+      <div class="badge">Destaque</div>
     </section>
 
-    <section aria-labelledby="contato">
-      <h2 id="contato">Contato</h2>
-      <p>Email: <a href="mailto:contato@ongesperanca.org">contato@ongesperanca.org</a></p>
-      <p>Telefone: <a href="tel:+5511999999999">(11) 99999-9999</a></p>
-
-      <form aria-label="Formulário de contato" autocomplete="on">
-        <label for="nome">Nome:</label>
-        <input id="nome" name="nome" type="text" placeholder="Digite seu nome" required>
-
-        <label for="email">Email:</label>
-        <input id="email" name="email" type="email" placeholder="Digite seu email" required>
-
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
-
+    <section>
+      <h2>Contato</h2>
+      <p>Email: contato@ongesperanca.org</p>
+      <p>Telefone: (11) 99999-9999</p>
+      <form>
+        <input type="text" placeholder="Nome" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Mensagem" required></textarea>
         <button type="submit">Enviar</button>
       </form>
     </section>
   </main>
 
-  <footer role="contentinfo">
-    <p>&copy; 2025 ONG Esperança — Todos os direitos reservados.</p>
-    <a href="#conteudo" class="skip-link">Voltar ao topo</a>
+  <footer>
+    <p>&copy; 2025 ONG Esperança</p>
   </footer>
 </body>
 </html>
