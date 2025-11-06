@@ -10,12 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const temp = document.createElement("div");
       temp.innerHTML = html;
+      // Remove header, footer e scripts duplicados
       temp.querySelectorAll("header, footer, script").forEach(el => el.remove());
       const main = temp.querySelector("main, #content") || temp;
       content.innerHTML = main.innerHTML;
 
       initMasks();
-      applySavedTheme(); // reaplica tema em conteúdo novo
+      applySavedTheme(); // reaplica tema no conteúdo injetado
     } catch (error) {
       content.innerHTML = `<p>Erro ao carregar a página: ${error.message}</p>`;
     }
@@ -70,6 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!form.checkValidity()) {
           e.preventDefault();
           alert("Por favor, preencha todos os campos corretamente!");
+        } else {
+          e.preventDefault();
+          alert("Cadastro realizado com sucesso!");
+          form.reset();
         }
       });
     }
