@@ -9,20 +9,21 @@
 <body>
   <header>
     <h1>ONG Esperança</h1>
-    <nav>
+    <nav role="navigation">
       <ul>
         <li><a href="index.html">Início</a></li>
         <li><a href="projetos.html">Projetos</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
+    <button id="toggle-mode" aria-label="Alternar entre modo normal, escuro e alto contraste">🌙 Alternar Modo</button>
   </header>
 
-  <main>
+  <main role="main">
     <section>
       <h2>Quem Somos</h2>
       <p>Promovemos inclusão social por meio de projetos comunitários.</p>
-      <img src="assets/img/equipe.jpg" alt="Equipe da ONG">
+      <img src="assets/img/equipe.jpg" alt="Equipe da ONG Esperança reunida em uma reunião">
     </section>
 
     <section>
@@ -36,7 +37,7 @@
 
     <section class="card">
       <h2>Projetos em Destaque</h2>
-      <img src="assets/img/projetosocial.jpg" alt="Projeto Social">
+      <img src="assets/img/projetosocial.jpg" alt="Imagem de um projeto social em andamento">
       <p>Conheça nossos projetos e como você pode ajudar a transformar a comunidade.</p>
       <button>Saiba Mais</button>
       <div class="badge">Destaque</div>
@@ -47,9 +48,12 @@
       <p>Email: contato@ongesperanca.org</p>
       <p>Telefone: (11) 99999-9999</p>
       <form>
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Mensagem" required></textarea>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" required></textarea>
         <button type="submit">Enviar</button>
       </form>
     </section>
