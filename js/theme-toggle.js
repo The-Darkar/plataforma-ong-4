@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // seleciona botões existentes
   const darkBtn = document.getElementById("btn-dark-mode");
   const contrastBtn = document.getElementById("btn-contrast");
 
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function applyTheme(theme) {
     document.body.classList.remove("dark-mode", "high-contrast");
-
     if (theme === "dark") {
       document.body.classList.add("dark-mode");
     } else if (theme === "contrast") {
